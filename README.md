@@ -1,3 +1,7 @@
+# homolog_helper
+Scripts para facilitar a extração de logs para validação de eventos do firebase.
+
+
 Projeto para facilitar a captura e filtro de logs do android utilizando adb.
 
 Projeto feito para shell script no linux.
