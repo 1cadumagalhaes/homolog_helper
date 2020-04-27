@@ -33,7 +33,7 @@ Mais exemplos:
 - `./run.sh //cria o arquivo log.txt e o log_events.txt`
 - `./run.sh 'arquivo_de_logs' //cria o arquivo arquivo_de_logs.txt e o arquivo_de_logs_events.txt`
 - `./run.sh 'arquivo_de_logs' '(FE)'`
-1) Dar ctrl+C no terminal para finalizar a execução do logcat
+3) Dar ctrl+C no terminal para finalizar a execução do logcat
 
 
 Depois disso os arquivos de saída vão ser criados. 
