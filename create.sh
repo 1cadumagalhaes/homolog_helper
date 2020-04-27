@@ -17,19 +17,21 @@ echo "adb shell setprop debug.firebase.analytics.app .none." > $1/disablelog.sh;
 
 touch $1/run.sh;
 
-cat >> $1/run.sh <<EOL
-echo "Para parar de captar logs, pressione ctrl+C"
+cat > $1/run.sh <<EOL
+echo "Para parar de captar logs, pressione ctrl+C";
 
 trap 'echo "
 Execução" parada pelo usuário' 1 2 15
 
 if [ -z "\$1" ]
 then
+    ./setlog.sh;
     echo "Rodando logcat para o log.txt"
     adb logcat -v time -s FA FA-SVC >> log.txt;
     python3 filterevents.py;
     exit;
 else
+    ./setlog.sh
     echo "Rodando logcat para o \$1.txt"
     if [ -z "\$2" ]
     then 
@@ -42,11 +44,15 @@ else
         exit;
     fi
 fi
+
+./disablelog.sh;
 exit;
+
+
 
 EOL
 
-cat >> $1/filterevents.py <<EOL
+cat > $1/filterevents.py <<EOL
 
 import sys,getopt
 
@@ -82,8 +88,7 @@ chmod +x setlog.sh && chmod +x disablelog.sh && chmod +x run.sh;
 
 echo "Para executar (com o celular conectado e o modo de desenvolvedor ativado):
 1) Navegue até a pasta criada. Ex: 'cd $1'
-2) Execute o arquivo setlog.sh. Ex: ./setlog.sh
-3) Execute o arquivo run.sh. Ex: ./run.sh <arquivo de output do log> <string pra filtrar as linhas> (Os parâmetros são opcionais)
+2) Execute o arquivo run.sh. Ex: ./run.sh <arquivo de output do log> <string pra filtrar as linhas> (Os parâmetros são opcionais)
 Mais exemplos: 
 - ./run.sh //cria o arquivo log.txt e o log_events.txt
 - ./run.sh 'arquivo_de_logs' //cria o arquivo arquivo_de_logs.txt e o arquivo_de_logs_events.txt
