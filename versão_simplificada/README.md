@@ -18,9 +18,6 @@ Para alterar o nome do arquivo, basta alterar a variável inputfile no arquivo f
 
 ## Sobre os arquivos
 
-
-## Sobre os arquivos
-
 ### run.sh 
 Executa o seguinte comando: 
 `adb logcat -v time -s FA FA-SVC >> log.txt`
