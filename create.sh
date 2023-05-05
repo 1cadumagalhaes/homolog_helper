@@ -10,8 +10,13 @@ mkdir $1;
 touch $1/setlog.sh;
 echo "adb shell setprop debug.firebase.analytics.app " $1 > $1/setlog.sh;
 echo "adb shell setprop log.tag.FA VERBOSE
+adb shell setprop log.tag.FA DEBUG
 adb shell setprop log.tag.FA-SVC VERBOSE
-adb shell setprop log.tag.GAv4-SVC DEBUG" >> $1/setlog.sh;
+adb shell setprop log.tag.FA-SVC DEBUG
+adb shell setprop log.tag.GAv4-SVC DEBUG
+adb shell setprop log.tag.GAv4-SVC VERBOSE
+adb shell setprop log.tag.GoogleTagManager DEBUG
+adb shell setprop log.tag.GoogleTagManager VERBOSE" >> $1/setlog.sh;
 
 touch $1/disablelog.sh;
 echo "adb shell setprop debug.firebase.analytics.app .none." > $1/disablelog.sh;
